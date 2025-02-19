@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Aula 2 - Introdução Angular</title>
+    <style>
+        /* Quando utilizamos #, estamos chamando um ID  */
+        #meuElemento{
+            width: 200px;
+            height: 100px;
+            background-color: lightblue;
+        }
+        /* Quando utilizamos . , estamos chamando uma CLASSE */
+        .fontFiap {
+            font-size: 15xp;
+        }
+
+    </style>
+</head>
+<body>
+        
+    <div id="conteudo"></div>
+    <input type="button">
+
+    <p>Estados:</p>
+    <select onchange="chamarMunicipio()">
+        <option>Selecione:</option>
+        <option value="SP">SP</option>
+        <option value="MG">MG</option>
+        <option value="RJ">RJ</option>
+    </select>
+
+    <h2>Exemplo onmouseover</h2>
+    <!-- trocaImagem(THIS), o this significa que ele está chamando a própria imagem dentro dele -->
+    <img onmouseover="trocarImagem(this)" onmouseout="voltarImagem(this)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Brasao_do_Sao_Paulo_Futebol_Clube.svg/640px-Brasao_do_Sao_Paulo_Futebol_Clube.svg.png" alt="Uma imagem de São Paulo de dia">
+
+</body>
+
+    <script>
+        // JavaScript
+        function chamarMunicipio() {
+            // Podemos chamar uma API que devolva os municípios
+            alert('Trocou o estado!')
+        }
+
+        function trocarImagem(img){
+            img.src = "https://jpimg.com.br/uploads/2024/01/aniversario-de-sao-paulo-10-curiosidades-sobre-a-cidade-1024x683.jpg"
+        }
+
+        function voltarImagem(img) {
+            img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Brasao_do_Sao_Paulo_Futebol_Clube.svg/640px-Brasao_do_Sao_Paulo_Futebol_Clube.svg.png"
+        }
+    </script>
+
+</html>
