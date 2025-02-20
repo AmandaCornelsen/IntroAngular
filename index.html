@@ -35,6 +35,18 @@
     <!-- trocaImagem(THIS), o this significa que ele está chamando a própria imagem dentro dele -->
     <img onmouseover="trocarImagem(this)" onmouseout="voltarImagem(this)" src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Brasao_do_Sao_Paulo_Futebol_Clube.svg/640px-Brasao_do_Sao_Paulo_Futebol_Clube.svg.png" alt="Uma imagem de São Paulo de dia">
 
+    <h2>Exemplo de consumo via fetch</h2>
+    <input type="button" value="Chamar API" onclick="consumirAPI()">
+
+    <form>
+        <p>Nome: <input type="text" id="nome"></p>
+        <p>Idade: <input type="text" id="idade"></p>
+        <p>Salario: <input type="text" id="salario"></p>
+        <p>Ativo: <input type="checkbox" id="ativo"></p>
+        <p>Endereco: <input type="text" id="endereco"></p>
+        <p>Departamento: <input type="text" id="departamento"></p>
+    </form>
+
 </body>
 
     <script>
@@ -50,6 +62,26 @@
 
         function voltarImagem(img) {
             img.src = "https://upload.wikimedia.org/wikipedia/commons/thumb/6/6f/Brasao_do_Sao_Paulo_Futebol_Clube.svg/640px-Brasao_do_Sao_Paulo_Futebol_Clube.svg.png"
+        }
+
+        function consumirAPI() {
+            fetch("http://demo7500081.mockable.io/funcionario")
+            .then(response => response.json()) //Pega um objeto e converte para json
+            .then(data => tratarDados(data))
+            .catch(error => console.log(error))
+        }
+
+        function tratarDados(data) {
+            debugger;
+            console.log(data)
+            //FUNÇÕES PARA RETORNAR NA PAGINA AS INFORMAÇOES DA API QUE FORAM FEITAS E ADICIONAR NO FORM
+            document.getElementById("nome").value = data.nome
+            document.getElementById("idade").value = data.idade
+            document.getElementById("salario").value = data.salario
+            document.getElementById("ativo").value = data.ativo
+            document.getElementById("endereco").value = data.endereco
+            document.getElementById("departamento").value = data.departamento
+
         }
     </script>
 
