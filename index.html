@@ -47,6 +47,13 @@
         <p>Departamento: <input type="text" id="departamento"></p>
     </form>
 
+    <h2>Consumir Via cep</h2>
+    <p>CEP: <input type="text" id="cep" onblur="consultarCep(this.value)"></p>  
+    <!-- UTILIZAR THIS AJUDA A NÃO PRECISAR UTILIZAR GETELEMENTBYID  -->
+    <p>Bairro: <input type="text" id="bairro"></p>
+    <p>Logradouro: <input type="text" id="logradouro"></p>
+    <p>Região: <input type="text" id="regiao"></p>
+
 </body>
 
     <script>
@@ -78,11 +85,38 @@
             document.getElementById("nome").value = data.nome
             document.getElementById("idade").value = data.idade
             document.getElementById("salario").value = data.salario
-            document.getElementById("ativo").value = data.ativo
+            if(data.ativo)
+                document.getElementById("ativo").checked = true
             document.getElementById("endereco").value = data.endereco
             document.getElementById("departamento").value = data.departamento
 
         }
+
+        function limparFormulario() {
+            document.getElementById("nome").value = "";
+            document.getElementById("idade").value = "";
+            document.getElementById("salario").value = "";
+            document.getElementById("ativo").checked = false;
+            document.getElementById("endereco").value = "";
+            document.getElementById("departamento").value = "";
+
+            }
+        
+            function consultarCep(cep) {
+                let url = `https://viacep.com.br/ws/${cep}/json/`
+                fetch(url)
+                .then(response => response.json())
+                .then(data => mostrarEndereco(data))
+                .catch(error => console.log(error))
+            }
+
+            function mostrarEndereco(dataCep) {
+                console.log(dataCep)
+                document.getElementById("bairro").value = dataCep.bairro;
+                document.getElementById("logradouro").value = dataCep.logradouro;
+                document.getElementById("regiao").value = dataCep.regiao;
+            }
+
     </script>
 
 </html>
